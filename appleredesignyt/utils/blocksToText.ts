@@ -1,5 +1,7 @@
 const defaults = {nonTextBehavior: 'remove'}
-import {Block} from 'sanity'
+// import {Block} from 'sanity'
+
+type Block = any
 
 export default function (blocks: Block[] = [], opts = {}) {
   if (typeof blocks === 'string') {
@@ -13,7 +15,7 @@ export default function (blocks: Block[] = [], opts = {}) {
         return options.nonTextBehavior === 'remove' ? '' : `[${block._type} block]`
       }
 
-      return block.children.map((child) => child.text).join('')
+      return block.children.map((child: {text: any}) => child.text).join('')
     })
     .join('\n\n')
 }
